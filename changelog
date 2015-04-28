@@ -1,3 +1,136 @@
+gettext (0.18.3.1-1ubuntu3) trusty; urgency=medium
+
+  * 07-disable-m4-include-when-tracing: Fix possible failure when
+    tracing by disabling m4_include and m4_esyscmd (LP: #1311895)
+
+ -- Adam Conrad <adconrad@ubuntu.com>  Thu, 24 Apr 2014 16:05:48 -0600
+
+gettext (0.18.3.1-1ubuntu2) trusty; urgency=low
+
+  * Restore --disable-native-java even when not doing a stage1 build, since
+    otherwise we fail to build if the default Java implementation is GCJ.
+  * Apply libtool.m4 patch for powerpc*le-linux support, copied from libtool
+    2.4.2-1.3ubuntu2.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Sun, 15 Dec 2013 20:09:33 +0000
+
+gettext (0.18.3.1-1ubuntu1) trusty; urgency=low
+
+  * Merge with Debian; remaining changes:
+    - Allow the package to cross-build.
+    - Define a stage1 profile to build without java and git.
+    - Throw away /usr/lib/gettext/gnu.gettext*; we don't need them.
+    - Explicitly configure with --disable-csharp.
+    - Keep gettext.jar in /usr/share/gettext instead of moving it to
+      /usr/share/java.
+    - Drop autopoint recommends of gettext. It pulls in git and
+      other sizable packages which make the CDs explode.
+  * gettext-el: Add an alternative dependency on emacs24.
+
+ -- Matthias Klose <doko@ubuntu.com>  Mon, 21 Oct 2013 19:12:18 +0200
+
+gettext (0.18.3.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Santiago Vila <sanvila@debian.org>  Sat, 17 Aug 2013 16:00:06 +0200
+
+gettext (0.18.3-1) unstable; urgency=low
+
+  * New upstream release.
+  * xgettext now partially supports JavaScript. Closes: #590724.
+  * xgettext and msgfmt's format string checking now recognize Python
+    format string in braced syntax (PEP 3101). Closes: #668226.
+
+ -- Santiago Vila <sanvila@debian.org>  Tue, 16 Jul 2013 11:32:34 +0200
+
+gettext (0.18.2.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * Changed Depends on libasprintf-dev and libgettextpo-dev to Recommends.
+  * Drop libgettextlib.so and libgettextsrc.so, as those libraries are
+    for internal use only and not meant to be used by other packages.
+  * The infrastructure archive now uses xz compression. Closes: #660391.
+    Changed Depends and Build-Depends accordingly.
+  * Modified debian/rules to support bootstrapping. Closes: #709559.
+  * Deprecated macro AM_PROG_MKDIR_P not used anymore. Closes: #709740.
+  * Review of patches in debian/patches:
+  * 01-do-not-use-java-in-urlget. Kept.
+  * 02-no-usr-share-info-dir-gz. Dropped in favour of AM_UPDATE_INFO_DIR.
+  * 03-fix-xgettext-crash. Dropped. Now upstream.
+  * 04-new-scheme-syntax. Dropped. Now upstream.
+  * 05-quotes-around-pwd-in-project-id. Kept.
+  * 06-msgfmt-default-little-endian. Kept.
+  * 07-eglibc-21.6-ftbfs-nogets. Dropped. Obsolete.
+  * 99-config-guess-config-sub. Updated.
+
+ -- Santiago Vila <sanvila@debian.org>  Thu, 30 May 2013 18:37:30 +0200
+
+gettext (0.18.1.1-10ubuntu3) raring; urgency=low
+
+  * Fix the native build.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu, 07 Mar 2013 23:38:14 +0800
+
+gettext (0.18.1.1-10ubuntu2) raring; urgency=low
+
+  * Allow the package to cross-build.
+  * Define a stage1 profile to build without java and git.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu, 07 Mar 2013 23:03:21 +0800
+
+gettext (0.18.1.1-10ubuntu1) raring; urgency=low
+
+  * Resynchronise with Debian NEW (LP: #1079768).  Remaining changes:
+    - Build Java components with gcj.
+    - Throw away /usr/lib/gettext/gnu.gettext*; we don't need them.
+    - Explicitly configure with --disable-csharp.
+    - Keep gettext.jar in /usr/share/gettext instead of moving it to
+      /usr/share/java.
+    - Drop autopoint recommends of gettext. It pulls in git and
+      other sizable packages which make the CDs explode.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Thu, 29 Nov 2012 11:16:38 +0000
+
+gettext (0.18.1.1-10) unstable; urgency=low
+
+  * Split out libgettextpo-dev and libasprintf-dev for multiarch
+    dependencies. Thanks to P.J McDermott for core patch. Closes: #683751.
+  * Fix FTBFS on eglibc-2.16 (gets removal/outdated gnulib). Closes: #693361.
+  * Thanks a lot to Colin Watson and Wookey, as they did all the work.
+  * Keep autosprintf.info.gz in gettext for now, for safety.
+  * Note: This is a "conservative release" which tries to be nice with
+    autobuilders using unstable. After the release of wheezy, the following
+    changes will be made: a) Change gettext Depends on the new -dev packages
+    to just Recommends, and b) Drop libgettextsrc.so and libgettextlib.so,
+    as those libraries are for internal use only and not meant to be used
+    by other packages. Those changes will be made *regardless* of this release
+    entering wheezy or not. Debian derivatives (like Ubuntu) are welcome to
+    do them now, as it is what will eventually happen in Debian.
+
+ -- Santiago Vila <sanvila@debian.org>  Wed, 28 Nov 2012 17:14:44 +0100
+
+gettext (0.18.1.1-9ubuntu2) raring; urgency=low
+
+  * Fix FTBFS on eglibc-2.16 (due to gets removal/outdated gnulib)
+    (Closes: #693361, LP: #1079768)
+
+ -- Wookey <wookey@wookware.org>  Thu, 29 Nov 2012 13:50:00 +0100
+
+gettext (0.18.1.1-9ubuntu1) quantal; urgency=low
+
+  * Merge from Debian Unstable (LP: #1012705). Remaining Changes:
+    - Build Java components with gcj.
+    - Throw away /usr/lib/gettext/gnu.gettext*; we don't need them.
+    - Explicitly configure with --disable-csharp.
+    - Keep gettext.jar in /usr/share/gettext instead of moving it to
+      /usr/share/java.
+    - Drop autopoint recommends of gettext. It pulls in git and
+      other sizable packages which make the CDs explode.
+    - Mark gettext Multi-Arch: allowed.
+
+ -- Vibhav Pant <vibhavp@gmail.com>  Wed, 13 Jun 2012 20:15:27 +0530
+
 gettext (0.18.1.1-9) unstable; urgency=low
 
   * Build with hardened build flags.
@@ -5,6 +138,26 @@ gettext (0.18.1.1-9) unstable; urgency=low
   * Use $(STRIP) on ELF binaries. not just on libraries.
 
  -- Santiago Vila <sanvila@debian.org>  Thu, 07 Jun 2012 12:08:00 +0200
+
+gettext (0.18.1.1-8ubuntu1) quantal; urgency=low
+
+  * Merge from Debian unstable.  Remaining changes:
+    - Build Java components with gcj.
+    - Throw away /usr/lib/gettext/gnu.gettext*; we don't need them.
+    - Explicitly configure with --disable-csharp.
+    - Keep gettext.jar in /usr/share/gettext instead of moving it to
+      /usr/share/java.
+    - Drop autopoint recommends of gettext. It pulls in git and
+      other sizable packages which make the CDs explode.
+    - Mark gettext Multi-Arch: allowed.
+  * Dropped changes, now upstream in Debian or fixed:
+    - Build with --no-as-needed, needs more work, as plugins are used.
+    - Make gettext explicitly depend on libgettextpo0 (= ${binary:Version}),
+      since there's no shlibs dependency but gettext still provides our -dev
+      package.
+    - Split libgettextpo0 out into a separate binary package for multiarch.
+
+ -- James Page <james.page@ubuntu.com>  Mon, 28 May 2012 15:46:50 +0100
 
 gettext (0.18.1.1-8) unstable; urgency=low
 
@@ -38,6 +191,46 @@ gettext (0.18.1.1-6) unstable; urgency=low
 
  -- Santiago Vila <sanvila@debian.org>  Sat, 28 Apr 2012 18:40:40 +0200
 
+gettext (0.18.1.1-5ubuntu4) quantal; urgency=low
+
+  * No-change rebuild with openjdk-7 as default-jdk.
+
+ -- James Page <james.page@ubuntu.com>  Fri, 18 May 2012 11:38:56 +0100
+
+gettext (0.18.1.1-5ubuntu3) precise; urgency=low
+
+  * No-change rebuild to drop spurious libsfgcc1 dependency on armhf.
+
+ -- Adam Conrad <adconrad@ubuntu.com>  Fri, 02 Dec 2011 17:28:32 -0700
+
+gettext (0.18.1.1-5ubuntu2) precise; urgency=low
+
+  * Mark gettext Multi-Arch: allowed.
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Sat, 05 Nov 2011 15:33:38 +0000
+
+gettext (0.18.1.1-5ubuntu1) precise; urgency=low
+
+  * Merge from Debian testing.  Remaining changes:
+    - Build with --no-as-needed, needs more work, as plugins are used.
+    - Build Java components with gcj.
+    - Throw away /usr/lib/gettext/gnu.gettext*; we don't need them.
+    - Explicitly configure with --disable-csharp.
+    - Keep gettext.jar in /usr/share/gettext instead of moving it to
+      /usr/share/java.
+    - Drop autopoint recommends of gettext. It pulls in git and
+      other sizable packages which make the CDs explode.
+  * Dropped changes:
+    - Bump Replaces on gettext and Conflicts on autopoint: the affected
+      Ubuntu versions were only ever in a devel release, no need to carry
+      a delta.
+  * Split libgettextpo0 out into a separate binary package for multiarch.
+  * Make gettext explicitly depend on libgettextpo0 (= ${binary:Version}),
+    since there's no shlibs dependency but gettext still provides our -dev
+    package.
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Thu, 20 Oct 2011 17:57:00 +0000
+
 gettext (0.18.1.1-5) unstable; urgency=low
 
   * Applied patch by Bruno Haible to teach xgettext about new scheme
@@ -52,6 +245,23 @@ gettext (0.18.1.1-4) unstable; urgency=low
   * Dropped obsolete -D_REENTRANT. Use --enable-threads instead.
 
  -- Santiago Vila <sanvila@debian.org>  Fri, 05 Aug 2011 15:47:34 +0200
+ 
+gettext (0.18.1.1-3ubuntu1) natty; urgency=low
+
+  * Merge from Debian testing (LP: #678161). Remaining changes:
+    - Build with --no-as-needed, needs more work, as plugins are used.
+    - Build Java components with gcj.
+    - Throw away /usr/lib/gettext/gnu.gettext*; we don't need them.
+    - Explicitly configure with --disable-csharp.
+    - Keep gettext.jar in /usr/share/gettext instead of moving it to
+      /usr/share/java.
+    - debian/control:
+      + Drop autopoint recommends of gettext. It pulls in git and
+        other sizable packages which make the CDs explode.
+      + Bump Replaces on gettext and Conflicts on autopoint to (<< 0.18-1)
+        rather than (<= 0.17-11), to accommodate previous Ubuntu versions.
+
+ -- Jesper Larsen <knorr@es.aau.dk>  Sun, 21 Nov 2010 16:38:48 +0100
 
 gettext (0.18.1.1-3) unstable; urgency=high
 
@@ -66,6 +276,32 @@ gettext (0.18.1.1-2) unstable; urgency=medium
     transitional package. Closes: #595741.
 
  -- Santiago Vila <sanvila@debian.org>  Sat, 11 Sep 2010 13:11:40 +0200
+ 
+gettext (0.18.1.1-1ubuntu3) natty; urgency=low
+
+  * Build with --no-as-needed, needs more work, as plugins are used.
+
+ -- Matthias Klose <doko@ubuntu.com>  Sat, 20 Nov 2010 13:03:39 +0100
+
+gettext (0.18.1.1-1ubuntu2) maverick; urgency=low
+
+  * debian/control: Drop autopoint recommends of gettext. It pulls in git and
+    other sizable packages which make the CDs explode.
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Mon, 02 Aug 2010 15:45:46 +0200
+
+gettext (0.18.1.1-1ubuntu1) maverick; urgency=low
+
+  * Resynchronise with Debian.  Remaining changes:
+    - Build Java components with gcj.
+    - Throw away /usr/lib/gettext/gnu.gettext*; we don't need them.
+    - Explicitly configure with --disable-csharp.
+    - Keep gettext.jar in /usr/share/gettext instead of moving it to
+      /usr/share/java.
+  * Bump Replaces on gettext and Conflicts on autopoint to (<< 0.18-1)
+    rather than (<= 0.17-11), to accommodate previous Ubuntu versions.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Sun, 01 Aug 2010 16:50:03 -0500
 
 gettext (0.18.1.1-1) unstable; urgency=low
 
@@ -109,6 +345,21 @@ gettext (0.18-1) unstable; urgency=low
     support upgrades which skip releases.
 
  -- Santiago Vila <sanvila@debian.org>  Tue, 18 May 2010 13:52:36 +0200
+ 
+gettext (0.17-11ubuntu1) maverick; urgency=low
+
+  * Resynchronise with Debian (LP: #577744). Remaining changes:
+    - Build Java components with gcj.
+    - Throw away /usr/lib/gettext/gnu.gettext*; we don't need them.
+    - gettext-tools/src/write-catalog.c:
+      - Add missing "mode" parameter to fix FTBFS.
+    - Use autoconf's preferred shell when invoking config.status.
+    - Explicitly configure with --disable-csharp.
+    - Keep gettext.jar in /usr/share/gettext instead of moving it to
+      /usr/share/java.
+  * Convert Ubuntu direct source changes to quilt patches (u01 and u02).
+
+ -- Felix Geyer <debfx-pkg@fobos.de>  Sun, 09 May 2010 10:05:58 +0200
 
 gettext (0.17-11) unstable; urgency=low
 
@@ -140,6 +391,33 @@ gettext (0.17-9) unstable; urgency=low
     as they don't have openjdk yet. Closes: #568390.
 
  -- Santiago Vila <sanvila@debian.org>  Sun, 14 Feb 2010 16:48:00 +0100
+ 
+gettext (0.17-8ubuntu3) lucid; urgency=low
+
+  * rebuild rest of main for armel armv7/thumb2 optimization;
+    UbuntuSpec:mobile-lucid-arm-gcc-v7-thumb2
+
+ -- Alexander Sack <asac@ubuntu.com>  Fri, 05 Mar 2010 04:34:20 +0100
+
+gettext (0.17-8ubuntu2) karmic; urgency=low
+
+  * No change rebuild to fix misbuilt binaries on armel.
+
+ -- Loïc Minier <loic.minier@ubuntu.com>  Wed, 21 Oct 2009 14:42:47 +0200
+
+gettext (0.17-8ubuntu1) karmic; urgency=low
+
+  * Resynchronise with Debian. Remaining changes:
+    - Build Java components with gcj.
+    - Throw away /usr/lib/gettext/gnu.gettext*; we don't need them.
+    - gettext-tools/src/write-catalog.c: 
+      - add missing "mode" parameter to fix FTBFS (from upstream CVS)
+    - Build-depend on default-jre/-jdk.
+    - debian/rules: Configure with JAVAC pointing to default-jdk.
+    - Use autoconf's preferred shell when invoking config.status.
+  * Explicitly configure with --disable-csharp.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Tue, 06 Oct 2009 16:28:09 +0100
 
 gettext (0.17-8) unstable; urgency=low
 
@@ -164,6 +442,29 @@ gettext (0.17-7) unstable; urgency=low
   * Really depend on libxml2 instead of using the embedded version.
 
  -- Santiago Vila <sanvila@debian.org>  Mon, 17 Aug 2009 18:08:54 +0200
+ 
+gettext (0.17-6ubuntu2) jaunty; urgency=low
+
+  * Cherry-pick df8857c0472c33bd786a967569c4b3c9c4c177b2 from upstream to use
+    autoconf's preferred shell when invoking config.status; LP: #332840.
+
+ -- Loic Minier <lool@dooz.org>  Tue, 03 Mar 2009 10:04:46 +0100
+
+gettext (0.17-6ubuntu1) jaunty; urgency=low
+
+  * Merge with Debian; remaining changes:
+    - Java components built with gcj instead of jikes-classpath
+    - Set GCJFLAGS to -fjni -findirect-dispatch.
+    - Throw away /usr/lib/gettext/gnu.gettext*; we don't need them.
+    - add lpia to list of mono-using arches, adjust build-deps
+    - remove hppa from list of java-using arches, adjust build-deps
+    - gettext-tools/src/write-catalog.c: 
+      - add missing "mode" parameter to fix FTBFS (from upstream CVS)
+    - (Build-)depend on default-jre/-jdk.
+    - debian/rules: Configure with JAVAC pointing to default-jdk.
+    - debian/rules: Don't set GCJFLAGS.
+
+ -- Matthias Klose <doko@ubuntu.com>  Tue, 02 Dec 2008 01:43:19 +0000
 
 gettext (0.17-6) unstable; urgency=low
 
@@ -181,6 +482,22 @@ gettext (0.17-5) unstable; urgency=low
   * po-mode: Do not duplicate headers with emacs23. Closes: #504356.
 
  -- Santiago Vila <sanvila@debian.org>  Fri, 28 Nov 2008 11:12:15 +0100
+ 
+gettext (0.17-4ubuntu1) jaunty; urgency=low
+
+  * Merge with Debian; remaining changes:
+    - Java components built with gcj instead of jikes-classpath
+    - Set GCJFLAGS to -fjni -findirect-dispatch.
+    - Throw away /usr/lib/gettext/gnu.gettext*; we don't need them.
+    - add lpia to list of mono-using arches, adjust build-deps
+    - remove hppa from list of java-using arches, adjust build-deps
+    - gettext-tools/src/write-catalog.c: 
+      - add missing "mode" parameter to fix FTBFS (from upstream CVS)
+    - (Build-)depend on default-jre/-jdk.
+    - debian/rules: Configure with JAVAC pointing to default-jdk.
+    - debian/rules: Don't set GCJFLAGS.
+
+ -- Matthias Klose <doko@ubuntu.com>  Mon, 17 Nov 2008 09:28:48 +0000
 
 gettext (0.17-4) unstable; urgency=low
 
@@ -189,6 +506,27 @@ gettext (0.17-4) unstable; urgency=low
   * Both patches by the author.
 
  -- Santiago Vila <sanvila@debian.org>  Wed, 27 Aug 2008 18:42:00 +0200
+ 
+gettext (0.17-3ubuntu2) intrepid; urgency=low
+
+  * (Build-)depend on default-jre/-jdk.
+  * debian/rules: Configure with JAVAC pointing to default-jdk.
+  * debian/rules: Don't set GCJFLAGS.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu, 31 Jul 2008 06:55:28 +0000
+
+gettext (0.17-3ubuntu1) intrepid; urgency=low
+
+  * Merge from debian unstable, remaining changes:
+    - Java components built with gcj instead of jikes-classpath
+    - Set GCJFLAGS to -fjni -findirect-dispatch.
+    - Throw away /usr/lib/gettext/gnu.gettext*; we don't need them.
+    - add lpia to list of mono-using arches, adjust build-deps
+    - remove hppa from list of java-using arches, adjust build-deps
+  * gettext-tools/src/write-catalog.c: 
+    - add missing "mode" parameter to fix FTBFS (from upstream CVS)
+
+ -- Michael Vogt <michael.vogt@ubuntu.com>  Mon, 23 Jun 2008 10:02:11 +0200
 
 gettext (0.17-3) unstable; urgency=low
 
@@ -202,6 +540,18 @@ gettext (0.17-3) unstable; urgency=low
   * Converted doc-base file to UTF-8. Moved to "Programming" section.
 
  -- Santiago Vila <sanvila@debian.org>  Thu, 12 Jun 2008 18:48:44 +0200
+ 
+gettext (0.17-2ubuntu1) hardy; urgency=low
+
+  * Merge with Debian; remaining changes:
+  * Remaining Ubuntu changes:
+    - Java components built with gcj instead of jikes-classpath
+    - Set GCJFLAGS to -fjni -findirect-dispatch.
+    - Throw away /usr/lib/gettext/gnu.gettext*; we don't need them.
+    - add lpia to list of mono-using arches, adjust build-deps
+    - remove hppa from list of java-using arches, adjust build-deps
+
+ -- LaMont Jones <lamont@ubuntu.com>  Wed, 12 Dec 2007 21:12:04 -0700
 
 gettext (0.17-2) unstable; urgency=medium
 
@@ -222,6 +572,29 @@ gettext (0.17-1) unstable; urgency=low
   * gettext tools are now under GPL version 3.
 
  -- Santiago Vila <sanvila@debian.org>  Sun, 25 Nov 2007 11:35:30 +0100
+ 
+gettext (0.16.1-2ubuntu3) gutsy; urgency=low
+
+  * Drop hppa from the list of java-using archs
+
+ -- LaMont Jones <lamont@ubuntu.com>  Mon, 13 Aug 2007 15:35:45 -0600
+
+gettext (0.16.1-2ubuntu2) gutsy; urgency=low
+
+  * Add lpia to the list of mono-using arches, and adjust build-deps.
+
+ -- Adam Conrad <adconrad@ubuntu.com>  Tue, 31 Jul 2007 14:55:22 +1000
+
+gettext (0.16.1-2ubuntu1) gutsy; urgency=low
+
+  * Merge with Debian; remaining changes:
+  * Remaining Ubuntu changes:
+    - Build-depend on file,
+    - Java components built with gcj instead of jikes-classpath
+    - Set GCJFLAGS to -fjni -findirect-dispatch.
+    - Throw away /usr/lib/gettext/gnu.gettext*; we don't need them.
+
+ -- Matthias Klose <doko@ubuntu.com>  Mon,  9 Jul 2007 16:22:21 +0200
 
 gettext (0.16.1-2) unstable; urgency=low
 
@@ -233,6 +606,27 @@ gettext (0.16.1-2) unstable; urgency=low
   * Fixed typo in po-mode.el. Closes: #412656.
 
  -- Santiago Vila <sanvila@debian.org>  Mon,  2 Jul 2007 20:29:14 +0200
+ 
+gettext (0.16.1-1ubuntu2) feisty; urgency=low
+
+  * Rebuild for changes in the amd64 toolchain.
+  * Set Ubuntu maintainer address.
+
+ -- Matthias Klose <doko@ubuntu.com>  Mon,  5 Mar 2007 01:16:25 +0000
+
+gettext (0.16.1-1ubuntu1) feisty; urgency=low
+
+  * Merge to Debian unstable to bring in 0.16.1. This version is compatible
+    with automake 1.10 and also fixes the segfaults with lisp files.
+  * Remaining Ubuntu changes:
+    - Build-depend on file,
+    - Java components built with gcj instead of jikes-classpath
+    - Set GCJFLAGS to -fjni -findirect-dispatch.
+    - Install libintl.jar in /usr/share/java, keep a symlink in
+      /usr/share/gettext.
+    - Throw away /usr/lib/gettext/gnu.gettext*; we don't need them.
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Wed,  6 Dec 2006 11:16:41 +0100
 
 gettext (0.16.1-1) unstable; urgency=low
 
@@ -251,6 +645,28 @@ gettext (0.15-3) unstable; urgency=medium
     is currently uninstallable.
 	
  -- Santiago Vila <sanvila@debian.org>  Fri,  3 Nov 2006 17:19:02 +0100
+ 
+gettext (0.15-2ubuntu2) feisty; urgency=low
+
+  * Rebuild for ldbl128 change on powerpc and sparc.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu,  2 Nov 2006 09:59:15 +0000
+
+gettext (0.15-2ubuntu1) edgy; urgency=low
+
+  * Merge from debian unstable, to fix #65063.  Remaining changes:
+    - Build-depend on file,
+    - Mono components built with mono-mcs instead of pnet,
+    - Java components built with gcj instead of jikes-classpath
+    - Set GCJFLAGS to -fjni -findirect-dispatch.
+    - Install libintl.jar in /usr/share/java, keep a symlink in
+      /usr/share/gettext.
+    - Throw away /usr/lib/gettext/gnu.gettext*; we don't need them.
+
+  * Build-depend on java-gcj-compat-dev instead of gcj to get around bad
+    gcj detection in configure script.
+
+ -- Scott James Remnant <scott@ubuntu.com>  Thu, 12 Oct 2006 14:56:58 +0100
 
 gettext (0.15-2) unstable; urgency=low
 
@@ -273,6 +689,53 @@ gettext (0.15-1) unstable; urgency=low
     See gnu.utils.bug for details.
 	
  -- Santiago Vila <sanvila@debian.org>  Mon, 21 Aug 2006 18:45:14 +0200
+ 
+gettext (0.14.6-1ubuntu6) edgy; urgency=low
+
+  * Re-add build-dependency on gcj.
+  * Do not compile the native java binaries directly from the sources,
+    but from the class files.
+  * Set GCJFLAGS to -fjni -findirect-dispatch.
+  * Install libintl.jar in /usr/share/java, keep a symlink in
+    /usr/share/gettext.
+  * Finally, throw away /usr/lib/gettext/gnu.gettext*; we don't need them.
+
+ -- Matthias Klose <doko@ubuntu.com>  Fri, 18 Aug 2006 11:38:31 +0000
+
+gettext (0.14.6-1ubuntu5) edgy; urgency=low
+
+  * Build-depend on file; the build dependency is mentioned in
+    0.12.1-3, but apparently missing.
+
+ -- Matthias Klose <doko@ubuntu.com>  Tue, 15 Aug 2006 07:21:57 +0000
+
+gettext (0.14.6-1ubuntu4) edgy; urgency=low
+
+  * Do not try to install libintl.jar.
+
+ -- Matthias Klose <doko@ubuntu.com>  Tue, 15 Aug 2006 01:47:47 +0000
+
+gettext (0.14.6-1ubuntu3) edgy; urgency=low
+
+  * Temporarily remove build-dependency on gcj.
+
+ -- Matthias Klose <doko@ubuntu.com>  Tue, 15 Aug 2006 00:35:23 +0000
+
+gettext (0.14.6-1ubuntu2) edgy; urgency=low
+
+  * debian/control:
+    - replace pnet build dependency with mono as we won't have pnet in main
+      at least for edgy
+  * debian/rules:
+    - build GNU.Gettext.dll with mono instead of pnet
+
+ -- Sebastian Dröge <slomo@ubuntu.com>  Mon, 10 Jul 2006 00:15:41 +0200
+
+gettext (0.14.6-1ubuntu1) edgy; urgency=low
+
+  * Resynchronize with Debian unstable.
+
+ -- Matthias Klose <doko@ubuntu.com>  Tue,  4 Jul 2006 11:53:33 +0000
 
 gettext (0.14.6-1) unstable; urgency=low
 
@@ -302,6 +765,25 @@ gettext (0.14.5-3) unstable; urgency=low
   * Removed no longer required Build-Depends-Indep: texi2html.
 
  -- Santiago Vila <sanvila@debian.org>  Mon,  1 May 2006 19:11:56 +0200
+ 
+gettext (0.14.5-2ubuntu3) dapper; urgency=low
+
+  * Rebuild using gcj-4.1.
+
+ -- Matthias Klose <doko@ubuntu.com>  Wed, 22 Feb 2006 11:36:30 +0000
+
+gettext (0.14.5-2ubuntu2) breezy; urgency=low
+
+  * Build-depend on libgcj-dev.
+
+ -- Matthias Klose <doko@ubuntu.com>  Mon, 18 Jul 2005 20:26:07 +0200
+
+gettext (0.14.5-2ubuntu1) breezy; urgency=low
+
+  * Resynchronize with Debian. Ubuntu 12479.
+  * Reenable building the java bits using gcj. Ubuntu 10940.
+
+ -- Matthias Klose <doko@ubuntu.com>  Mon, 18 Jul 2005 16:59:36 +0000
 
 gettext (0.14.5-2) unstable; urgency=low
 
@@ -309,12 +791,31 @@ gettext (0.14.5-2) unstable; urgency=low
   * Changed shlibs file accordingly.
 
  -- Santiago Vila <sanvila@debian.org>  Wed,  6 Jul 2005 17:30:10 +0200
+ 
+gettext (0.14.5-1ubuntu2) breezy; urgency=low
+
+  * No change build to cleanup erroneous /usr/share/info/dir.gz on hppa
+
+ -- LaMont Jones <lamont@ubuntu.com>  Fri,  8 Jul 2005 11:57:19 -0600
+
+gettext (0.14.5-1ubuntu1) breezy; urgency=low
+
+  * Resynchronise with Debian, unscramble changelog.
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Thu,  7 Jul 2005 08:55:35 +0000
 
 gettext (0.14.5-1) unstable; urgency=low
 
   * New upstream release.
 
  -- Santiago Vila <sanvila@debian.org>  Mon,  6 Jun 2005 19:02:50 +0200
+ 
+gettext (0.14.4-2ubuntu1) breezy; urgency=low
+
+  * Disable jikes-classpath and gcj dependancies for now.  Will
+    reenable these when they're available in main.
+
+ -- Jeff Bailey <jbailey@ubuntu.com>  Wed, 18 May 2005 19:48:40 +0000
 
 gettext (0.14.4-2) unstable; urgency=medium
 
