@@ -21,7 +21,9 @@ INSTALL_SCRIPT = install
 STRIP = true
 ATRIP = true
 
+$(info DEB_BUILD_OPTIONS = $(DEB_BUILD_OPTIONS))
 ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+$(info Did not find 'nostrip':  Stripping)
  # FIXME: libtool seems to call strip directly
  ifeq ($(DEB_HOST_ARCH),$(DEB_BUILD_ARCH))
    INSTALL_PROGRAM += -s
@@ -31,6 +33,8 @@ ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
    STRIP=$(DEB_HOST_GNU_TYPE)-strip --strip-unneeded --remove-section=.comment --remove-section=.note
    ATRIP=$(DEB_HOST_GNU_TYPE)-strip --strip-debug
  endif
+else
+$(info Found 'nostrip':  Not stripping)
 endif
 
 export AM_UPDATE_INFO_DIR = no
