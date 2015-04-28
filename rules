@@ -39,6 +39,8 @@ NOJAVA_ARCHS = %none%
 build:
 	cd debian && $(CC) glibc-test.c
 	debian/a.out
+	#GNULIB_SRCDIR=/usr/share/gnulib/m4 ./autogen.sh --skip-gnulib
+	./autogen.sh
 	./configure --prefix=/usr --enable-threads $(CSHARP) \
 		--disable-native-java CC="$(CC)" CFLAGS="$(CFLAGS)" \
 		JAVAC=/usr/lib/jvm/default-java/bin/javac \
